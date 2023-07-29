@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "811244696693",
+    "project_id": "resimob",
+    "storage_bucket": "resimob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811244696693:android:6adf94ca067f8aaa9bb43c",
+        "android_client_info": {
+          "package_name": "com.example.resimob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811244696693-hf4s455unpsg24j6b3v8g9jgo32fuqnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZQ_iAXh95D0uFdxFbj8mtdsieNgbYsAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811244696693-hf4s455unpsg24j6b3v8g9jgo32fuqnk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
