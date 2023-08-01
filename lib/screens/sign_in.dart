@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:resimob/constants/colors.dart';
 
 class SignIn extends StatefulWidget {
@@ -13,9 +11,8 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   bool isVisible = true;
+  bool isShowen = true;
   bool _isEmailValidate = false;
-  final _email = TextEditingController();
-  final _password = TextEditingController();
   String email = '';
   String password = '';
   @override
@@ -62,7 +59,7 @@ class _SignInState extends State<SignIn> {
                     Text(
                       'ResiMob',
                       style: TextStyle(
-                        color: Color(0xff1D447F),
+                        color: secondaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: MediaQuery.sizeOf(context).width * 0.1,
                       ),
@@ -85,15 +82,53 @@ class _SignInState extends State<SignIn> {
                       },
                       decoration: InputDecoration(
                         suffixIcon: _isEmailValidate
-                            ? Icon(Icons.check)
-                            : Icon(Icons.not_interested_rounded),
-                        prefixIcon: Icon(
+                            ? const Icon(
+                                Icons.check,
+                                color: mainColor,
+                              )
+                            : const Icon(
+                                Icons.close,
+                                color: mainColor,
+                              ),
+                        prefixIcon: const Icon(
                           Icons.person_2_outlined,
                           color: mainColor,
                         ),
                         label: const Text('Mail Adress'),
                       ),
                     ),
+                    TextFormField(
+                      obscureText: isShowen,
+                      onChanged: (value) {
+                        setState(() {
+                          password = value;
+                        });
+                      },
+                      decoration: InputDecoration(
+                          label: Text('Password'),
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                            color: mainColor,
+                          ),
+                          suffix: IconButton(
+                            icon: const Icon(
+                              Icons.remove_red_eye,
+                              color: mainColor,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                isShowen = !isShowen;
+                              });
+                            },
+                          )),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.05,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Login'),
+                    )
                   ],
                 ),
               ),
