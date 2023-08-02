@@ -5,7 +5,7 @@ import '../../services/auth_service.dart';
 import '../sign_in.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();

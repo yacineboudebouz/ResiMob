@@ -16,6 +16,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  // ignore: unused_field
   bool _isLoading = false;
 
   AuthService authService = AuthService();
@@ -65,9 +66,11 @@ class _SignInState extends State<SignIn> {
               child: Form(
                 key: _formKey,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       'ResiMob',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: secondaryColor,
                         fontWeight: FontWeight.bold,
@@ -80,7 +83,7 @@ class _SignInState extends State<SignIn> {
                           email = value;
                           _isEmailValidate = RegExp(
                                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(value!);
+                              .hasMatch(value);
                         });
                       },
                       validator: (value) {

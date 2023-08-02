@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resimob/screens/admin/home.dart';
+import 'package:resimob/screens/check_if_admin.dart';
 import 'package:resimob/screens/sign_in.dart';
 
 import 'helper_functions.dart';
@@ -31,6 +32,6 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return _isSignedIn ? Home() : SignIn();
+    return _isSignedIn ? const CheckIfAdmin() : const SignIn();
   }
 }
