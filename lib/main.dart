@@ -4,6 +4,7 @@ import 'package:resimob/constants/colors.dart';
 import 'package:resimob/constants/routes.dart';
 import 'package:resimob/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:resimob/screens/admin/timings.dart';
 import 'package:resimob/screens/check_if_admin.dart';
 import 'package:resimob/services/database_service.dart';
 
@@ -22,15 +23,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: mainColor,
-        colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
-        useMaterial3: true,
-      ),
-      home: Wrapper(),
-      routes: routes,
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primaryColor: mainColor,
+          colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
+          useMaterial3: true,
+        ),
+        home: Wrapper(),
+        routes: {
+          CheckIfAdmin.checkIfAdminName: (context) => CheckIfAdmin(),
+          Timings.timingsNamed: (context) => Timings(),
+        });
   }
 }
