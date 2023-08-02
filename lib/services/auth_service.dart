@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../helper/helper_functions.dart';
+
 class AuthService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
@@ -16,6 +18,20 @@ class AuthService {
       // ignore: avoid_print
       print(e);
       return e.message;
+    }
+  }
+
+  Future signOut() async {
+    try {
+      await HelperFunctions.saveUserLoggedInStatus(false);
+      await HelperFunctions.saveEmailSF('');
+      await HelperFunctions.saveUserNameSF('');
+      await HelperFunctions.saveUserOrAdmin(false);
+      await firebaseAuth.signOut();
+      return true;
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      return e.toString();
     }
   }
 }

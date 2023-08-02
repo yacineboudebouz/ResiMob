@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:resimob/constants/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:resimob/screens/check_if_admin.dart';
+import 'package:resimob/services/database_service.dart';
 import '../constants/widgets.dart';
 import '../helper/helper_functions.dart';
 import '../services/auth_service.dart';
@@ -176,9 +178,16 @@ class _SignInState extends State<SignIn> {
           .then((value) async {
         if (value == true) {
           // saving values in SF
+          QuerySnapshot snapshot =
+              await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+                  .gettingUserData();
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveEmailSF(email);
-
+          await HelperFunctions.saveUserNameSF(
+              snapshot.docs[0]['firstName'] + snapshot.docs[0]['lastName']);
+          await HelperFunctions.saveUserOrAdmin(snapshot.docs[0]['isAdmin']);
+          Navigator.of(context)
+              .pushReplacementNamed(CheckIfAdmin.checkIfAdminName);
           // setting shared state
         } else {
           showSnackBar(context, Colors.red, value);

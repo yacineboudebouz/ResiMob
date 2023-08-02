@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resimob/screens/home.dart';
+import 'package:resimob/screens/admin/home.dart';
 import 'package:resimob/screens/sign_in.dart';
 
 import 'helper_functions.dart';

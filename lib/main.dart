@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resimob/constants/colors.dart';
 import 'package:resimob/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:resimob/screens/check_if_admin.dart';
 
 import 'helper/wrapper.dart';
 
@@ -17,13 +18,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: mainColor,
-          colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
-          useMaterial3: true,
-        ),
-        home: Wrapper());
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: mainColor,
+        colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
+        useMaterial3: true,
+      ),
+      home: Wrapper(),
+      routes: {
+        CheckIfAdmin.checkIfAdminName: (context) => CheckIfAdmin(),
+      },
+    );
   }
 }

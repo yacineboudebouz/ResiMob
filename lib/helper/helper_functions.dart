@@ -5,7 +5,7 @@ class HelperFunctions {
   static String userLoggedInKey = 'LOGGEDINKEY';
   static String userNameKey = 'USERNAMEKEY';
   static String userEmailKey = 'USEREMAILKEY';
-
+  static String isUserOrAdminKey = 'USERORADMIN';
   // getting the data from SF
 
   static Future<bool?> getUserLoggedINStatus() async {
@@ -37,5 +37,15 @@ class HelperFunctions {
   static Future<String?> getUserEmail() async {
     SharedPreferences sf = await SharedPreferences.getInstance();
     return sf.getString(userEmailKey);
+  }
+
+  static Future<bool?> saveUserOrAdmin(bool isAdmin) async {
+    SharedPreferences sf = await SharedPreferences.getInstance();
+    return sf.setBool(isUserOrAdminKey, isAdmin);
+  }
+
+  static Future<bool?> getUserOrAdmin() async {
+    SharedPreferences sf = await SharedPreferences.getInstance();
+    return sf.getBool(isUserOrAdminKey);
   }
 }
