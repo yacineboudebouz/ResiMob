@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:resimob/constants/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../constants/widgets.dart';
+import '../helper/helper_functions.dart';
+import '../services/auth_service.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -9,6 +14,9 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  bool _isLoading = false;
+
+  AuthService authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool isVisible = true;
   bool isShowen = true;
@@ -104,6 +112,13 @@ class _SignInState extends State<SignIn> {
                           password = value;
                         });
                       },
+                      validator: (value) {
+                        if (value!.length < 6) {
+                          return 'Password must be at least 6 characters';
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: InputDecoration(
                           label: Text('Password'),
                           prefixIcon: const Icon(
@@ -126,9 +141,20 @@ class _SignInState extends State<SignIn> {
                       height: MediaQuery.sizeOf(context).height * 0.05,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Login'),
-                    )
+                      onPressed: () {
+                        login();
+                      },
+                      // ignore: sort_child_properties_last
+                      child: const Text(
+                        'Login',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w800),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: mainColor,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -137,5 +163,30 @@ class _SignInState extends State<SignIn> {
         ),
       ],
     ));
+  }
+
+  login() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      await authService
+          .loginWithEmailAndPassword(email, password)
+          .then((value) async {
+        if (value == true) {
+          // saving values in SF
+          await HelperFunctions.saveUserLoggedInStatus(true);
+          await HelperFunctions.saveEmailSF(email);
+
+          // setting shared state
+        } else {
+          showSnackBar(context, Colors.red, value);
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      });
+    }
   }
 }
