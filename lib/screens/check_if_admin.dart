@@ -30,9 +30,10 @@ class _CheckIfAdminState extends State<CheckIfAdmin> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) =>
-            DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid),
-        child: isAdmin ? Home() : UserHome());
+      create: (context) =>
+          DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid),
+      child: isAdmin ? Home() : UserHome(),
+    );
   }
 
   Future getAdminOrNot() async {
