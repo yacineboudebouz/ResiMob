@@ -130,7 +130,7 @@ class _SignInState extends State<SignIn> {
                             Icons.lock,
                             color: mainColor,
                           ),
-                          suffix: IconButton(
+                          suffixIcon: IconButton(
                             icon: const Icon(
                               Icons.remove_red_eye,
                               color: mainColor,
@@ -184,6 +184,7 @@ class _SignInState extends State<SignIn> {
           QuerySnapshot snapshot =
               await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
                   .gettingUserData();
+          print(snapshot.docs[0]['firstName'] + snapshot.docs[0]['lastName']);
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveEmailSF(email);
           await HelperFunctions.saveUserNameSF(

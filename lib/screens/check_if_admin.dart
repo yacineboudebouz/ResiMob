@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,29 +21,18 @@ class CheckIfAdmin extends StatefulWidget {
 
 class _CheckIfAdminState extends State<CheckIfAdmin> {
   bool isAdmin = false;
-
-  AuthService sv = AuthService();
-  Map<String, dynamic> userData = {};
-  getUserData() async {
-    Map<String, dynamic> data =
-        await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-            .getUserData();
-    setState(() {
-      userData = data;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    getUserData();
     getAdminOrNot();
   }
 
   @override
   Widget build(BuildContext context) {
-    print(userData);
-    return isAdmin ? Home() : UserHome();
+    return ChangeNotifierProvider(
+        create: (context) =>
+            DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid),
+        child: isAdmin ? Home() : UserHome());
   }
 
   Future getAdminOrNot() async {
