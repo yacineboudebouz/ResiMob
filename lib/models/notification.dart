@@ -19,7 +19,7 @@ class AppNotification {
       'title': title,
       'details': details,
       'img': img,
-      'timeStamp': timeStamp,
+      'timeStamp': timeStamp.toString(),
       'president': president,
       'type': type,
     };

@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resimob/constants/colors.dart';
-import 'package:resimob/constants/routes.dart';
+
 import 'package:resimob/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:resimob/screens/admin/feedback.dart';
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
           useMaterial3: true,
         ),
-        home: Wrapper(),
+        home: const Wrapper(),
         routes: {
           CheckIfAdmin.checkIfAdminName: (context) => const CheckIfAdmin(),
           Timings.timingsNamed: (context) => const Timings(),
